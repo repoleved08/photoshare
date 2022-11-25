@@ -1,0 +1,30 @@
+{% extends 'photos/base.html' %}
+{% include 'photos/base.html' %}
+
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <div class="buttons is-left">
+                <a href="{% url 'gallery' %}" class="button is-dark">Go Back</a>
+            </div>
+            <!-- Image title -->
+            <h2 class="title is-size-4 has-text-centered"> Detailed Photo & Description</h2>
+            <!-- Image Detailed  -->
+            <figure class="image is-5by3 mb-5">
+                <img src="{{photo.image.url}}" alt="Food">
+            </figure>
+
+            <!-- Image Description -->
+            <p>{{photo.description}}</p>
+            <div class="buttons">
+                <button class="button is-success">
+                    <span class="icons is-left mr-3">
+                        <i class="fa fa-download"></i>
+                    </span>
+                    <span>Download Image</span>
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

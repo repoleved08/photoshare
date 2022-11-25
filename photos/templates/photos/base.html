@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="../../static/fontawesome/css/all.css">
+    <title>BASE </title>
+</head>
+
+<body>
+    <nav class="navbar is-fixed-top is-white has-shadow">
+        <div class="navbar-brand">
+            <a href="{% url 'gallery' %}" class="navbar-item">
+                <img src="../../static/images/logo/xtrasol.png" alt="Gallery">
+            </a>
+
+            <a role="button" class="navbar-burger mt-2" aria-label="menu" aria-expanded="false" id="burger">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" id="nav-menu">
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <a href="#" class="navbar-item">Images</a>
+                    <a href="#" class="navbar-item">New Images</a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="buttons mr-4">
+                    <a href="#" class="button is-success ">Sign Up</a>
+                    <a href="#" class="button is-info">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+
+    <!-- Hero Content -->
+    <section class="hero is-link mt-6">
+        <div class="hero-body">
+            <p class="title">Image Gallery</p>
+            <p class="subtitle">
+                Browse The Various Images
+            </p>
+        </div>
+        <!-- End Hero Content -->
+
+        <!-- Start Hero Footer -->
+        <div class="hero-foot">
+            <nav class="tabs is-boxed">
+                <div class="container">
+                    <ul>
+                        <li class="is-active"><a href="#">Online Images</a></li>
+                        <li><a href="#">Saved Images</a></li>
+                        <li><a href="#">Liked Images</a></li>
+                        <li><a href="#">Most Downloaded</a></li>
+                        <li><a href="#">Request Logo</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- End Hero Footer -->
+    </section>
+    <!-- End Hero Section -->
+
+    <!--Main content-->
+    <section class="section">
+        {% block content %}
+
+        {% endblock content %}
+    </section>
+    <!--End of Main content-->
+
+    <!-- Start Footer -->
+
+    <footer class="footer is-primary is-fullwidth has-background-grey-light">
+        <div class="container">
+            <div class="columns">
+                <!-- First Column -->
+                <div class="column">
+                    <p class="subtitle is-size-6 has-text-white"><strong>Homepage Links</strong></p>
+                    <ul>
+                        <li><a class="has-text-dark mb-6" href="#">
+                            <span class="icons is-left has-text-info">
+                                <i class="fa fa-arrow-right"></i>
+                            </span>
+                            <span>Images</span>
+                            </a></li>
+                            <li><a class="has-text-dark mb-6" href="#">
+                                <span class="icons is-left has-text-info">
+                                    <i class="fa fa-arrow-right"></i>
+                                </span>
+                                <span>Trending Images</span>
+                                </a></li>
+                                <li><a class="has-text-dark mb-6" href="#">
+                                    <span class="icons is-left has-text-info">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </span>
+                                    <span>Featured Images</span>
+                                    </a></li>
+                        <hr class="separator is-dark">
+                        <li><a class="button is-primary mt-3" href="#">Sign Up</a></li>
+                    </ul>
+                </div>
+                <!-- End First Column -->
+
+                <!-- Start Second Column -->
+                <div class="column">
+                    <p class="subtitle is-size-6"><strong>Subscribe to our weekly newsletter & trends</strong> </p>
+                    <div class="control has-icons-left">
+                        <input type="email" class="input is-medium" placeholder="Email"><br>
+                        <p class="button is-danger mt-3 mb-3">Subscribe</p>
+                        <span class="icon is-left">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <br>
+                        <p>Download Bulma Cheatsheet here</p>
+                        <a href="#" class="button is-dark mt-4">
+                            <span class="has-icons-left mr-3">
+                                <i class="fa fa-download"></i>
+                            </span>
+                            <p>Download</p>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Second Column -->
+
+                <!-- Final column -->
+
+                <div class="column ml-6">
+                    <p class="subtitle is-size-6"><strong>Follow us on social media</strong></p>
+                    <span class="icons">
+                        <a href="#"><i class="fab fa-facebook is-rounded"></i></a>
+                        <a class = "ml-3" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class = "has-text-dark ml-3" href="#"><i class="fab fa-github"></i></a>
+                        <a class = "ml-3" href="#"><i class="fab fa-dropbox"></i></a>
+                        <a class = "ml-3" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class = "has-text-success ml-3" href="#"><i class="fab fa-whatsapp"></i></a>
+                    </span>
+
+                </div>
+
+                <!-- End Final Column -->
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- End Footer  -->
+
+    <script src="{% static '../../static/js/app.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+{% extends 'photos/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="columns is-variable is-1-mobile">
+        <div class="column is-one-fifth">
+            <h2 class="title is-size-4">Gallery Menu</h2>
+            <p class="subtitle">Image Filter</p>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth mt-6">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">Photo Name</th>
+                    </tr>
+                <tbody>
+                    <tr>
+                        <th style="text-align:center;"><strong><a class="has-text-dark" href="{% url 'gallery' %}">ALL</a></strong></th>
+                    </tr>
+
+                    {% for category in categories %}
+                    <tr>
+                        <th style="text-align:center;"><strong><a class="has-text-dark" href="{% url 'gallery' %}?category={{category.name}}">{{category.name}}</a></strong></th>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th><strong><a id="signup" class="button is-success is-fullwidth">Add Photo</a></strong></th>
+                    </tr>
+                </tbody>
+                </thead>
+            </table>
+        </div>
+
+        <!-- Images column -->
+        <div class="column is-four-fifth">
+            <h2 class="title has-text-centered is-size-3">Photos</h2>
+            <p class="subtitle has-text-centered">Photo Project</p>
+            <!-- Cards columns -->
+            <div class="columns mt-5 is-3 is-multiline is-variable">
+                {% for photo in photos %}
+                <div class="column is-3-desktop is-4-tablet">
+                    <!-- First card -->
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Card Header</p>
+                            <button class="card-header-icon" aria-label="more options">
+                                <span class="icon">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </header>
+
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{photo.image.url}}" alt="Product 1">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                {{photo.description}}
+                            </div>
+                            <small>Category: {{photo.category.name}}</small>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'viewphoto' photo.id %}" class="card-footer-item">View</a>
+                            <span class="icons is-right">
+                                <span class="icon">
+                                    <a class=" card-footer-item has-text-danger mt-5 px-5 py-5" href="#"><i class="fa-solid fa-heart"></i></a>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- End first card -->
+                </div>
+                {%empty%}
+                <p class="subtitle is-size-5 has-text-danger">No Photos added yet...</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+        <h3 class="title mb-6 has-text-centered">Add Photo</h3>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!--Add Description-->
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <input name="description" type="text" class="input" placeholder="Enter a description">
+                </div>
+            </div>
+            <!--Select Category-->
+            <div class="field">
+                <div class="control">
+                    <label>Select a category</label>
+                    <div class="select is-success">
+                        <select name="category" id="">
+                            <option value="none">Select Category..</option>
+                            {% for category in categories %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--New Category-->
+            <div class="field">
+                <label class="label">Create New Category</label>
+                <div class="control">
+                    <input name="category_new" type="text" class="input" placeholder="Create New Category">
+                </div>
+            </div>
+            <!--End New Category-->
+
+            <!--File upload-->
+            <div class="field">
+                <div class="control">
+                    <label>Upload Image</label>
+                    <div class="file is-primary">
+                        <label class="file-label">
+                            <input type="file" name="image" class="file-input">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fa fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Upload Image
+                                </span>
+                            </span>
+                            {% comment %} <span class="file-name">
+                                {{image}}
+                            </span> {% endcomment %}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--End File upload-->
+
+            <!--Submit Button-->
+            {% if user.is_authenticated %}
+                <div class="mt-6 has-text-centered">
+                    <button type="submit" class="button is-info">Add Photo</button>
+                </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock content %}
